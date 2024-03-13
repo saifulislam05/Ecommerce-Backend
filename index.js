@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRoutes from "./routes/user.js"
+import productRoutes from "./routes/product.js"
 
 const app = express();
 
@@ -11,6 +12,7 @@ mongoose.connect("mongodb://localhost:27017/ecommerce")
     .catch((err)=>console.log(`Database connection failed error : ${err}` ));
 
 app.use("/v1/api/user",userRoutes)
+app.use("/v1/api/product",productRoutes)
 const PORT = 10000;
 
 
