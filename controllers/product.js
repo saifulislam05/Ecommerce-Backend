@@ -27,9 +27,24 @@ const updateProduct = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: true,
-      message: `there is problem to create product`,
+      message: `there is problem to updating product`,
     });
   }
 };
 
-export { createProduct, updateProduct };
+const getProducts = async (req, res) => {
+  try {
+    const products = await productModel.find();
+    res.json({
+      success: true,
+      message: "product fetched successfully",
+      results: products,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: true,
+      message: `there is problem to fetching product`,
+    });
+  }
+};
+export { createProduct, updateProduct, getProducts };
