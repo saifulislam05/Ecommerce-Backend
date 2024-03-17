@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+import userAddressSchema from "./userAddressSchema.js";
+
 const userSchema = new mongoose.Schema({
   firstname: {
     type: String,
@@ -26,6 +28,9 @@ const userSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     default: [],
     ref: "products",
+  },
+  address: {
+    type: userAddressSchema,
   },
 });
 
