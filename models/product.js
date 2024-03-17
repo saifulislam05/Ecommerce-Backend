@@ -24,7 +24,28 @@ const productSchema = new mongoose.Schema({
     category: {
         type: String,
         required:true
-    } 
+    },
+    likes: {
+        type: [mongoose.Schema.Types.ObjectId],
+        default: [],
+        ref:"users"
+    },
+    dislikes: {
+        type: [mongoose.Schema.Types.ObjectId],
+        default: [],
+        ref:"users"
+    },
+    totalLikes: {
+        type: Number,
+        required: false,
+        default:0
+    },
+    totalDisLikes: {
+        type: Number,
+        required: false,
+        default:0
+    }
+    
     
 })
 
