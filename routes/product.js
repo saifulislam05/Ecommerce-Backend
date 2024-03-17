@@ -7,6 +7,7 @@ import getProducts from "../controllers/product/getProducts.js";
 import getProductById from "../controllers/product/getProductById.js";
 import productLikeDislike from "../controllers/product/productLikeDislike.js";
 import getProductDetailsById from "../controllers/product/getProductDetailsById.js";
+import reviewController from "../controllers/product/reviewController.js";
 
 const router = express.Router();
 
@@ -22,6 +23,12 @@ router.get(
   "/details/:productid",
   authCheck(["Buyer", "Admin", "Seller"]),
   getProductDetailsById
+);
+
+router.post(
+  "/review/:productid",
+  authCheck(["Buyer", "Admin", "Seller"]),
+  reviewController
 );
 
 router.post(
