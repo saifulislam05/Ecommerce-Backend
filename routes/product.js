@@ -11,29 +11,29 @@ import reviewController from "../controllers/product/reviewController.js";
 
 const router = express.Router();
 
-router.post("/", authCheck(["Admin", "Seller"]), createProduct);
-router.patch("/:productid", authCheck(["Admin", "Seller"]), updateProduct);
-router.get("/", authCheck(["Buyer", "Admin", "Seller"]), getProducts);
+router.post("/", authCheck(["admin", "seller"]), createProduct);
+router.patch("/:productid", authCheck(["admin", "seller"]), updateProduct);
+router.get("/", authCheck(["buyer", "admin", "seller"]), getProducts);
 router.get(
   "/:productid",
-  authCheck(["Buyer", "Admin", "Seller"]),
+  authCheck(["buyer", "admin", "seller"]),
   getProductById
 );
 router.get(
   "/details/:productid",
-  authCheck(["Buyer", "Admin", "Seller"]),
+  authCheck(["buyer", "admin", "seller"]),
   getProductDetailsById
 );
 
 router.post(
   "/review/:productid",
-  authCheck(["Buyer", "Admin", "Seller"]),
+  authCheck(["buyer", "admin", "seller"]),
   reviewController
 );
 
 router.post(
   "/:action/:productid",
-  authCheck(["Buyer", "Admin", "Seller"]),
+  authCheck(["buyer", "admin", "seller"]),
   productLikeDislike
 );
 
