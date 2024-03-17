@@ -1,6 +1,7 @@
 import productModel from "../../models/product.js";
 
 const getProductById = async (req, res) => {
+  console.log(req.params.productid);
   try {
     const product = await productModel.findById(req.params.productid);
     res.json({

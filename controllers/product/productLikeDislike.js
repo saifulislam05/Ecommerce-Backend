@@ -4,8 +4,6 @@ const productLikeDislike = async (req, res) => {
   const { action, productid } = req.params;
   const userId = req.user._id;
 
-  console.log(action);
-
   try {
     const productDetails = await productModel.findById(productid);
     if (!productDetails) {
