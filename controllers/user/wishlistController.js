@@ -1,4 +1,4 @@
-import userModel from "../../models/user.js";
+import userModel from "../../models/user/user.js";
 
 // Function to add or remove a product from the wishlist
 const toggleWishlistItem = async (userId, productId, existsInWishlist) => {

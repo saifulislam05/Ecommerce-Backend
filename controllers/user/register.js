@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import userModel from "../../models/user.js";
+import userModel from "../../models/user/user.js";
 
 const register = async (req, res) => {
   const hash = bcrypt.hashSync(req.body.password, 10);
