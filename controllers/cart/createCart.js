@@ -15,7 +15,7 @@ const addToCart = async (userId, productId, quantity, color) => {
     // Update existing cart
     userCart.cartTotal += totalprice;
     userCart.products.push({
-      productId,
+      product:productId,
       quantity,
       color,
       price: product.price,
@@ -27,7 +27,7 @@ const addToCart = async (userId, productId, quantity, color) => {
     userCart = await cartModel.create({
       userId,
       products: [
-        { productId, quantity, color, price: product.price, totalprice },
+        { product:productId, quantity, color, price: product.price, totalprice },
       ],
       cartTotal: totalprice,
     });
@@ -37,8 +37,7 @@ const addToCart = async (userId, productId, quantity, color) => {
 };
 
 const createCart = async (req, res) => {
-  const { productid } = req.params;
-  const { quantity, color } = req.body;
+  const { productid,quantity, color } = req.body;
 
   try {
    const updatedCart= await addToCart(req.user._id, productid, quantity, color);
