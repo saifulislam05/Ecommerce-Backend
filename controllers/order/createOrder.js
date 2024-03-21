@@ -45,7 +45,13 @@ const createOrder = async (req, res) => {
       modeOfPayment,
     };
 
+    //create order
     const createdOrder = await orderModel.create(orderDetails);
+
+    // delete userCart after success order
+    await cartModel.findByIdAndDelete(userCart._id);
+        
+
     res.json({
       success: true,
       message: "Order created successfully.",
