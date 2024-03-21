@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/user.js"
 import productRoutes from "./routes/product.js"
 import cartRoutes from "./routes/cart.js";
+import couponRoutes from "./routes/coupon.js";
+import orderRoutes from "./routes/order.js";
 
 const app = express();
 
@@ -15,6 +17,8 @@ mongoose.connect("mongodb://localhost:27017/ecommerce")
 app.use("/v1/api/user",userRoutes)
 app.use("/v1/api/product",productRoutes)
 app.use("/v1/api/cart",cartRoutes)
+app.use("/v1/api/coupon",couponRoutes)
+app.use("/v1/api/order",orderRoutes)
 
 
 const PORT = 10000;
