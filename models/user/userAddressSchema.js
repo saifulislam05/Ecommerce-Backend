@@ -1,36 +1,14 @@
 import mongoose from "mongoose";
 
 const userAddressSchema = new mongoose.Schema({
-  address: {
-    type: String,
-    required: false,
-    default: "",
-  },
-  landmark: {
-    type: String,
-    required: false,
-    default: "",
-  },
-  city: {
-    type: String,
-    required: false,
-    default: "",
-  },
-  state: {
-    type: String,
-    required: false,
-    default: "",
-  },
-  pincode: {
-    type: String,
-    required: false,
-    default: "",
-  },
-
+  address: String, 
+  landmark: String,
+  city: String,
+  state: String,
+  pincode: String,
   country: {
     type: String,
-    required: false,
-    default: "India",
+    default: "India", 
   },
 });
 
