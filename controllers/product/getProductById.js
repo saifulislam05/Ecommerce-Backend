@@ -1,9 +1,26 @@
 import productModel from "../../models/product.js";
 
 const getProductById = async (req, res) => {
-  console.log(req.params.productid);
+  const productid=req.params.productid
   try {
-    const product = await productModel.findById(req.params.productid);
+    const product = await productModel
+      .findById(productid,{createdAt:0,__v:0})
+      .populate({
+        path: "seller",
+        select: "-_id firstname lastname",
+      })
+      .populate({
+        path: "likes",
+        select: "-_id firstname lastname",
+      })
+      .populate({
+        path: "dislikes",
+        select: "-_id firstname lastname",
+      })
+      .populate({
+        path: "reviews.userId",
+        select: "-_id firstname lastname",
+      });
     res.json({
       success: true,
       message: "product fetched successfully",
