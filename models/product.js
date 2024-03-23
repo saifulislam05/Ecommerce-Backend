@@ -25,9 +25,24 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  colorAvailable: {
+    type: [String]
+  },
+  tags: {
+    type: [String]
+  },
   likes: {
     type: [mongoose.Schema.Types.ObjectId],
     default: [],
+    ref: "users",
+  },
+  createdAt: {
+    type: Date,
+    required:true,
+  },
+  seller: {
+    type: mongoose.Schema.Types.ObjectId,
+    required:true,
     ref: "users",
   },
   dislikes: {
@@ -37,12 +52,10 @@ const productSchema = new mongoose.Schema({
   },
   totalLikes: {
     type: Number,
-    required: false,
     default: 0,
   },
   totalDisLikes: {
     type: Number,
-    required: false,
     default: 0,
   },
   reviews: {
