@@ -24,7 +24,7 @@ const authCheck = (role) => async(req, res, next) => {
   } catch (error) {
     return res.status(401).json({
       success: false,
-      message: "You don't have permission to do this operation",
+      message: "Please login",
     });
   }
 };

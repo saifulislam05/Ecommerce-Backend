@@ -1,8 +1,6 @@
 import productModel from "../../models/product.js";
 
 const updateProduct = async (req, res) => {
-  console.log("params", req.params);
-  console.log("body", req.body);
   try {
     await productModel.findByIdAndUpdate(req.params.productid, req.body);
     res.json({

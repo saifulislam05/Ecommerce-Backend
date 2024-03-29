@@ -6,6 +6,11 @@ const couponSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref:"users"
+  },
   discountPercentage: {
     type: Number,
     required: true,
@@ -26,7 +31,7 @@ const couponSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  isActive: {
+  active: {
     type: Boolean,
     default: true,
     required: true,

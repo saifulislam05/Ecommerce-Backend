@@ -1,7 +1,7 @@
 import couponModel from "../../models/coupon.js";
 
 const getCouponByCode = async (req, res) => {
-  const couponCode = req.body.couponCode;
+  const {couponCode} = req.params;
   try {
     const coupon = await couponModel.findOne({ couponCode });
     if (!coupon) {
