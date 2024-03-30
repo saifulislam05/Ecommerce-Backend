@@ -17,9 +17,10 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/ecommerce")
-    .then(console.log("Database connected Successfully"))
-    .catch((err)=>console.log(`Database connection failed error : ${err}` ));
+mongoose
+  .connect(process.env.DB_CONNECTION_STRING)
+  .then(console.log("Database connected Successfully"))
+  .catch((err) => console.log(`Database connection failed error : ${err}`));
 
 app.use("/v1/api/user", userRoutes)
 
