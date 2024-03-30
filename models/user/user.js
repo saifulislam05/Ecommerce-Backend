@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema({
   address: {
     type: userAddressSchema,
   },
+  token: {
+    type:String
+  }
 });
 
 const userModel = mongoose.model("users", userSchema);

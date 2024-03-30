@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="rzp-button1">Pay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      var options = {
+        key: "rzp_test_WyHjOyqoDbC5lR",
+        amount: 7600,
+        currency: "INR",
+        name: "Online Store",
+        description: "product",
+        order_id: "order_NsPRzdTXtkNapO",
+        handler: function (response) {
+          console.log(response);
+          alert(`Payment Succesful ${response.razorpay_payment_id}`);
+          alert(`order id ${response.razorpay_order_id}`);
+          alert(`Signature ${response.razorpay_signature}`);
+        },
+        modal: {
+          ondismiss: function () {
+            alert(`Payment Failed`);
+          },
+        },
+        notes: {
+          name: "Customer Name",
+        },
+        theme: {
+          color: "#667eea",
+        },
+      };
+
+      document.getElementById("rzp-button1").onclick = async function (e) {
+        e.preventDefault(); // Prevent default action
+
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+      };
+    </script>
+  </body>
+</html>

@@ -23,7 +23,6 @@ const orderSchema = new mongoose.Schema({
   coupon: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "coupons",
-    required: false,
   },
   deliveryAddress: {
     type: userAddressSchema,
@@ -56,7 +55,7 @@ const orderSchema = new mongoose.Schema({
   modeOfPayment: {
     type: String,
     required: true,
-    enum: ["cod", "paid"],
+    enum: ["cod", "online"],
   },
   transactionId: {
     type: String,

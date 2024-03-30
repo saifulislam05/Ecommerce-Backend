@@ -10,6 +10,9 @@ import blogRoutes from "./routes/blog.js"
 import productCategoryRoutes from "./routes/productCategory.js";
 import brandRoutes from "./routes/brand.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const app = express();
 
 app.use(express.json());
@@ -30,5 +33,5 @@ app.use("/v1/api/blog", blogRoutes);
 app.use("/v1/api/productCategory", productCategoryRoutes);
 app.use("/v1/api/brand", brandRoutes);
 
-const PORT = 10000;
-app.listen(PORT,()=>console.log(`Server is running on port ${PORT}`))
+
+app.listen(process.env.PORT,()=>console.log(`Server is running on port ${process.env.PORT}`))

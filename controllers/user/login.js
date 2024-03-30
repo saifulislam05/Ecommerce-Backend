@@ -1,7 +1,8 @@
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 import userModel from "../../models/user/user.js";
+import dotenv from "dotenv";
 dotenv.config();
 
 const login = async (req, res) => {
@@ -12,6 +13,12 @@ const login = async (req, res) => {
       message: "user not registered with this email",
     });
   }
+  // const userToken = user?.token;
+
+
+  // const data = jwt.verify(userToken, process.env.TOKEN_SECRET_KEY) ;
+  // console.log("data----", data);
+  // return
   const isPasswordCorrect = bcrypt.compareSync(
     req.body.password,
     user.password
@@ -34,6 +41,8 @@ const login = async (req, res) => {
   };
 
   const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY);
+
+  await userModel.findByIdAndUpdate(user._id,{token})
 
   res.json({
     success: true,
