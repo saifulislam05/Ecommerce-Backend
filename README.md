@@ -2,7 +2,7 @@
 
 ## Base URL
 
-http://localhost:10000/v1/api
+https://ecommerce-backend-apis-54gt.onrender.com/v1/api
 
 
 
