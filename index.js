@@ -8,6 +8,7 @@ import orderRoutes from "./routes/order.js";
 
 import blogRoutes from "./routes/blog.js"
 import productCategoryRoutes from "./routes/productCategory.js";
+import brandRoutes from "./routes/brand.js";
 
 const app = express();
 
@@ -25,7 +26,9 @@ app.use("/v1/api/coupon",couponRoutes)
 app.use("/v1/api/order",orderRoutes)
 
 app.use("/v1/api/blog", blogRoutes);
+
 app.use("/v1/api/productCategory", productCategoryRoutes);
+app.use("/v1/api/brand", brandRoutes);
 
 const PORT = 10000;
 app.listen(PORT,()=>console.log(`Server is running on port ${PORT}`))
