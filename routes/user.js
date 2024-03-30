@@ -9,6 +9,7 @@ import addressController from "../controllers/user/addressController.js";
 import wishlistController from "../controllers/user/wishlistController.js";
 import getWishlist from "../controllers/user/getWishlist.js";
 import deleteUser from "../controllers/user/deleteUser.js";
+import getAllUser from "../controllers/user/getAllUser.js";
 
 
 const router = express.Router();
@@ -16,6 +17,8 @@ const router = express.Router();
 router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
+
+router.get("/", authCheck(["admin"]), getAllUser);
 
 router.post("/address",authCheck(["admin","seller","buyer"]), addressController);
 
