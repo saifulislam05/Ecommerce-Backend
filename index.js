@@ -35,4 +35,22 @@ app.use("/v1/api/productCategory", productCategoryRoutes);
 app.use("/v1/api/brand", brandRoutes);
 
 
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Error handler middleware
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({
+    error: {
+      message: err.message,
+    },
+  });
+});
+
+
 app.listen(process.env.PORT,()=>console.log(`Server is running on port ${process.env.PORT}`))

@@ -1,4 +1,3 @@
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import userModel from "../../models/user/user.js";
@@ -13,12 +12,24 @@ const login = async (req, res) => {
       message: "user not registered with this email",
     });
   }
-  // const userToken = user?.token;
+  const userToken = user?.token;
 
 
-  // const data = jwt.verify(userToken, process.env.TOKEN_SECRET_KEY) ;
-  // console.log("data----", data);
-  // return
+  if (userToken) {
+    try {
+      jwt.verify(userToken, process.env.TOKEN_SECRET_KEY);
+      return res.json({
+        success: true,
+        message: "You are already Logged in",
+        token: userToken,
+      });
+    } catch (error) {
+      
+    }
+  }
+
+
+
   const isPasswordCorrect = bcrypt.compareSync(
     req.body.password,
     user.password
@@ -42,7 +53,7 @@ const login = async (req, res) => {
 
   const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY);
 
-  await userModel.findByIdAndUpdate(user._id,{token})
+  await userModel.findByIdAndUpdate(user._id, { token });
 
   res.json({
     success: true,
@@ -50,6 +61,5 @@ const login = async (req, res) => {
     token: token,
   });
 };
-
 
 export default login;
