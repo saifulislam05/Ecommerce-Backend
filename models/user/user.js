@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import crypto from "crypto";
+
 
 import userAddressSchema from "./userAddressSchema.js";
 
@@ -32,11 +34,21 @@ const userSchema = new mongoose.Schema({
   address: {
     type: userAddressSchema,
   },
-  token: {
-    type:String
-  }
+  token: String,
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
+userSchema.methods.createPasswordResetToken = async function () {
+  const resettoken = crypto.randomBytes(32).toString("hex");
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resettoken)
+    .digest("hex");
+  this.passwordResetExpires = Date.now() + 30 * 60 * 1000; // 10 minutes
+  return resettoken;
+};
 const userModel = mongoose.model("users", userSchema);
 
 export default userModel;
